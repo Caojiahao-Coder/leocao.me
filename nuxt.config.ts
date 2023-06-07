@@ -13,8 +13,5 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: "out-in" }
   },
 
-  // 配置 unocss for nuxt
-  modules: [
-    '@unocss/nuxt'
-  ]
+  modules: ['@unocss/nuxt', '@vueuse/nuxt', '@pinia/nuxt'],
 })
