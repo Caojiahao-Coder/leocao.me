@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data, pending, error, refresh } = await useAsyncData('projects_list', () => $fetch('/api/projects'))
+const { data, pending, error, refresh } = await useAsyncData('projects_list', () => $fetch('/api/projects/list'))
 const { width } = useWindowSize()
 </script>
 
@@ -9,7 +9,7 @@ const { width } = useWindowSize()
     <div grid gap-2 m-t-2 :style="{
       gridTemplateColumns: `repeat(${width >= 600 ? 2 : 1},1fr)`,
     }">
-      <ProjectItem :key="index" :project-info="item" v-for="(item, index) in data?.data" />
+      <ProjectItem :key="index" :project-info="item" v-for="(item, index) in data" />
     </div>
   </div>
 </template>

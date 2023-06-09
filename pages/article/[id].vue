@@ -4,20 +4,24 @@ import hljs from 'highlight.js'
 import '../../styles/nord.css'
 import '../../styles/markdown.css'
 const route = useRoute().params;
-const path = route.path
-const name = route.name
+
+console.log(route)
+
+const articleId = route.id
 
 //load article content data
 const { data, pending, error, refresh } = await useAsyncData<{
+  a_id: string,
   name: string,
   content: {
-    type: 'Buffer',
+    type: string,
     data: []
-  }, time: string
-}>('article-content', () => $fetch(`/api/article?path=${path}&name=${name}`))
+  },
+  time: string
+}>('article-content', () => $fetch(`/api/articles/` + articleId))
 
 function parseMarkdown(raw: []) {
-  const binaryArray = new Uint8Array(raw); // 'Hello' 的 ascii 字符集编码
+  const binaryArray = new Uint8Array(raw);
   const textDecoder = new TextDecoder();
   const text = textDecoder.decode(binaryArray);
 
@@ -54,7 +58,7 @@ function onBack() {
       <div class="color-fade">{{ data?.time }}</div>
       <div class="w-.5 bg-body b-rd-2"></div>
       <div class="color-fade">
-        © Leo Cao {{ path }}
+        © Leo Cao - {{ data?.name }}
       </div>
     </div>
     <article style="word-wrap: break-word;" class="overflow-hidden">
@@ -64,7 +68,8 @@ function onBack() {
     <div h-1px bg-body m-y-6></div>
 
     <div style="font-family: 'Roboto';">
-      > <a href="javascript:;" color-base icon-button @click="onBack">cd ..</a>
+      >
+      <a href="javascript:;" color-base icon-button @click="onBack">cd ..</a>
     </div>
   </div>
 </template>

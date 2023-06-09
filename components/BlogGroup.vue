@@ -4,7 +4,7 @@ const props = defineProps<
     title: string,
     fileList: {
       name: string,
-      path: string,
+      a_id: string,
       publishTime: string,
     }[]
   }
@@ -19,7 +19,7 @@ const props = defineProps<
       </span>
     </div>
     <div class="list-none">
-      <BlogItem :title="item.name" :path="item.path" :publish-time="item.publishTime" :key="index"
+      <BlogItem :title="item.name" :a_id="item.a_id" :publish-time="item.publishTime" :key="index"
         v-for="(item, index) in props.fileList" />
     </div>
   </div>

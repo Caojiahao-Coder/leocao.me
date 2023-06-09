@@ -8,12 +8,12 @@ const {
 <template>
   <div>
 
-    <div v-if="data?.data.filter(a => a.fileList.length > 0).length === 0"
-      class="p-t-56 p-b-24 text-32 select-none font-bold text-center" style="font-family: 'Cookie';">
+    <div v-if="data!.filter(a => a.fileList.length > 0).length === 0"
+      class="p-t-56 p-b-24 text-32 select-none font-bold text-center" style="font-family: Cookie;">
       Empty...
     </div>
 
-    <BlogGroup v-else v-for="(item, index) in data?.data" :title="item.title" :file-list="item.fileList" :key="index" />
+    <BlogGroup v-else v-for="(item, index) in data!" :title="item.title" :file-list="item.fileList!" :key="index" />
 
   </div>
 </template>

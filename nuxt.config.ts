@@ -1,16 +1,13 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      apiBase: '/api'
+      apiBase: '/api',
+      mongoDB: process.env.VUE_APP_MONGODB
     }
   },
 
   devtools: {
     enabled: true
-  },
-
-  app: {
-    pageTransition: { name: 'page', mode: "out-in" }
   },
 
   modules: ['@unocss/nuxt', '@vueuse/nuxt', '@pinia/nuxt'],
