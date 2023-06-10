@@ -1,4 +1,10 @@
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: 'Leo Cao'
+    }
+  },
+
   runtimeConfig: {
     public: {
       apiBase: '/api',
