@@ -13,8 +13,8 @@ const props = defineProps<{
 
 <template>
   <a :href="props.projectInfo.githubLink" target="_blank"
-    class="transition-all color-base decoration-none overflow-hidden b-rd-1">
-    <div class="flex flex-row border-base b-solid b-1 b-rd-1">
+    class="transition-all color-base decoration-none overflow-hidden">
+    <div class="flex flex-row border-base b-solid b-1 ">
       <div class="w-76px border-base b-solid b-0 b-r-1 flex flex-col bg-body b-rd-tl-1 b-rd-bl-1">
         <div class="w-48px h-48px m-auto" :class="props.projectInfo.cover" />
       </div>
