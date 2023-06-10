@@ -8,6 +8,9 @@ devDependencies:
   '@iconify-json/carbon':
     specifier: ^1.1.17
     version: 1.1.17
+  '@iconify-json/fluent-emoji':
+    specifier: ^1.1.13
+    version: 1.1.13
   '@nuxt/devtools':
     specifier: ^0.5.5
     version: 0.5.5(nuxt@3.5.3)(vite@4.3.9)
@@ -633,6 +636,12 @@ packages:
 
   /@iconify-json/carbon@1.1.17:
     resolution: {integrity: sha512-FJCHUNP+iEGZILqu5YjByV+RBrWCsMo7YWXBJSpRMvaeVH3yjK3TI8UIc7lmPGI1NRmjThiaqjxMqe7CgQY55Q==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/fluent-emoji@1.1.13:
+    resolution: {integrity: sha512-9tyClxWzrLwbfItv10/oUp3G7s5X+MUa0VN5P8nN2gmVg9Uy87HoZnDt3IRKNwbyqncXRr3p0VoWuv/Tg2jUCg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
