@@ -1,5 +1,36 @@
+<script setup lang="ts">
+
+onMounted(() => {
+  window.addEventListener('mousemove', onMouseMove)
+})
+
+onUnmounted(() => {
+  window.addEventListener('mouseover', onMouseMove)
+})
+
+function onMouseMove(event: MouseEvent) {
+  const item = document.getElementById('move-view')
+  if (!item)
+    return
+
+  let top = (event.pageY - 64)
+  let left = (event.pageX - 64)
+
+  top = Math.max(0, top);
+  left = Math.max(0, left);
+
+  top = Math.min(top, window.innerHeight - 128);
+  left = Math.min(left, window.innerWidth - 128);
+
+  console.log(window.innerHeight)
+
+  item.style.top = top + "px"
+  item.style.left = left + "px"
+}
+</script>
+
 <template>
-  <div class="p-6 flex flex-col gap-4">
+  <div class="p-6 flex flex-col gap-4 relative z-100">
     <div class="font-black text-4em" style="font-family: 'Dancing Script';">
       Hello,
       <br>
@@ -41,8 +72,18 @@
       </NuxtLink>
     </div>
   </div>
+
+  <div id="move-view" class="z-1 w-32 h-32"></div>
 </template>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+#move-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(45deg, #ff000060, #0000ff60);
+  filter: blur(40px);
+}
 </style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const width = ref<number>(1200)
+const width = ref<number>(800)
 
 onMounted(() => {
   width.value = window.innerWidth
