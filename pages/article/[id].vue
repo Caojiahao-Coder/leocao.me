@@ -5,8 +5,6 @@ import '../../styles/nord.css'
 import '../../styles/markdown.css'
 const route = useRoute().params;
 
-console.log(route)
-
 const articleId = route.id
 
 //load article content data

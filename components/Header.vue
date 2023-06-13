@@ -36,10 +36,10 @@ watch(expand, (newValue) => {
 
     <div v-if="width >= 500" class="flex flex-row gap-6 font-bold">
       <VerticalCenterIconCard>
-      <RouterLink class="icon-button decoration-none color-base" to="/blog">
-        Blog
-      </RouterLink>
-    </VerticalCenterIconCard>
+        <RouterLink class="icon-button decoration-none color-base" to="/blog">
+          Blog
+        </RouterLink>
+      </VerticalCenterIconCard>
 
       <VerticalCenterIconCard>
         <RouterLink class="icon-button decoration-none color-base" to="/projects">
@@ -76,31 +76,39 @@ watch(expand, (newValue) => {
     style="width: calc(100% - 32px);" b="0 t-1 b-1 solid">
     <ul class="list-none p0 m0">
       <li p="x-4 y-3" class="bg-body b-rd-1">
-        <div class="flex flex-row gap-2">
-          <div i-carbon-product class="h18px" style="line-height: 18px;" />
-          <div>Blog</div>
-        </div>
+        <a href="/blog" class="color-base decoration-none">
+          <div class="flex flex-row gap-2">
+            <div i-carbon-product class="h18px" style="line-height: 22px; height: 22px;" />
+            <div>Blog</div>
+          </div>
+        </a>
       </li>
 
       <li p="x-4 y-3" class="bg-body b-rd-1 m-t-2">
-        <div class="flex flex-row gap-2">
-          <div i-carbon-ibm-cloud-kubernetes-service class="h18px" style="line-height: 18px;" />
-          <div>Projects</div>
-        </div>
+        <a href="/Projects" class="color-base decoration-none">
+          <div class="flex flex-row gap-2">
+            <div i-carbon-ibm-cloud-kubernetes-service class="h18px" style="line-height: 18px;" />
+            <div>Projects</div>
+          </div>
+        </a>
       </li>
 
       <li p="x-4 y-3" class="bg-body b-rd-1 m-t-2">
-        <div class="flex flex-row gap-2">
-          <div i-carbon-logo-github class="h18px" style="line-height: 18px;" />
-          <div>Github</div>
-        </div>
+        <a href="https://github.com/caojiahao-Coder/" target="_blank" class="color-base decoration-none">
+          <div class="flex flex-row gap-2">
+            <div i-carbon-logo-github class="h18px" style="line-height: 18px;" />
+            <div>Github</div>
+          </div>
+        </a>
       </li>
 
       <li p="x-4 y-3" class="bg-body b-rd-1 m-t-2">
-        <div class="flex flex-row gap-2">
-          <div i-carbon-logo-figma class="h18px" style="line-height: 18px;" />
-          <div>Figma</div>
-        </div>
+        <a href="https://www.figma.com/files/team/1235847793536641012" target="_blank" class="color-base decoration-none">
+          <div class="flex flex-row gap-2">
+            <div i-carbon-logo-figma class="h18px" style="line-height: 18px;" />
+            <div>Figma</div>
+          </div>
+        </a>
       </li>
 
       <li p="x-4 y-3" class="bg-body b-rd-1 m-t-2">

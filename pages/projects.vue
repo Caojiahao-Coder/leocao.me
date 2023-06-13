@@ -1,6 +1,13 @@
 <script setup lang="ts">
 const { data, pending, error, refresh } = await useAsyncData('projects_list', () => $fetch('/api/projects/list'))
-const { width } = useWindowSize()
+const width = ref(0)
+
+onMounted(() => {
+  width.value = window.innerWidth
+  window.addEventListener('resize', () => {
+    width.value = window.innerWidth
+  })
+})
 </script>
 
 <template>

@@ -22,8 +22,6 @@ function onMouseMove(event: MouseEvent) {
   top = Math.min(top, window.innerHeight - 128);
   left = Math.min(left, window.innerWidth - 128);
 
-  console.log(window.innerHeight)
-
   item.style.top = top + "px"
   item.style.left = left + "px"
 }
