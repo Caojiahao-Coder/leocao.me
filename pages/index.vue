@@ -9,26 +9,27 @@ onUnmounted(() => {
 })
 
 function onMouseMove(event: MouseEvent) {
-  const item = document.getElementById('move-view')
+  const item = document.getElementById('my-page')
   if (!item)
     return
 
-  let top = (event.pageY - 64)
-  let left = (event.pageX - 64)
+  let top = (event.pageY - 80)
+  let left = (event.pageX - 80)
 
-  top = Math.max(0, top);
-  left = Math.max(0, left);
+  top = Math.max(80, top);
+  left = Math.max(80, left);
 
-  top = Math.min(top, window.innerHeight - 128);
-  left = Math.min(left, window.innerWidth - 128);
+  top = Math.min(top, window.innerHeight - 208);
+  left = Math.min(left, window.innerWidth - 208);
 
-  item.style.top = top + "px"
-  item.style.left = left + "px"
+
+  item.style.setProperty('--move-x', left + "px")
+  item.style.setProperty('--move-y', top + "px")
 }
 </script>
 
 <template>
-  <div class="p-6 flex flex-col gap-4 relative z-100">
+  <div class="p-6 flex flex-col gap-4 relative z-1" id="my-page">
     <div class="font-black text-4em" style="font-family: 'Dancing Script';">
       Hello,
       <br>
@@ -70,18 +71,22 @@ function onMouseMove(event: MouseEvent) {
       </NuxtLink>
     </div>
   </div>
-
-  <div id="move-view" class="z-1 w-32 h-32"></div>
 </template>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
-#move-view {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: linear-gradient(45deg, #ff000060, #0000ff60);
-  filter: blur(40px);
+#my-page::after {
+  position: fixed;
+  width: 10rem;
+  height: 10rem;
+  left: var(--move-x);
+  top: var(--move-y);
+  overflow: hidden;
+  border-radius: 90px;
+  background: conic-gradient(from -68.24deg at 50% 50.1%, #F047FF -58.7deg, rgba(79, 0, 247, 0.890484) 19.14deg, #C70000 201.14deg, #CB003D 237deg, #F047FF 301.3deg, rgba(79, 0, 247, 0.890484) 379.14deg);
+  filter: blur(100px);
+  content: '';
+  z-index: -1;
 }
 </style>
