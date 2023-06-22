@@ -17,4 +17,6 @@ export default defineNuxtConfig({
   },
 
   modules: ['@unocss/nuxt', '@vueuse/nuxt', '@pinia/nuxt'],
+
+  plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
 })
