@@ -3,6 +3,7 @@
     "linkify",
     "nuxtjs",
     "shiki",
+    "typer",
     "Vercel"
   ]
 }

@@ -8,7 +8,16 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: '/api',
-      mongoDB: process.env.VUE_APP_MONGODB
+    }
+  },
+
+  content: {
+    highlight: {
+      theme: {
+        default: 'github-light',
+        dark: 'github-dark',
+        sepia: 'monokai'
+      }
     }
   },
 
@@ -16,7 +25,7 @@ export default defineNuxtConfig({
     enabled: true
   },
 
-  modules: ['@unocss/nuxt', '@vueuse/nuxt', '@pinia/nuxt'],
+  modules: ['@unocss/nuxt', '@vueuse/nuxt', '@pinia/nuxt', '@nuxt/content'],
 
   plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
 })
