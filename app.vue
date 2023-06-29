@@ -11,14 +11,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-100vh bg-base color-base">
+  <div class="min-h-100vh bg-base color-base" p="x-2">
     <Header />
-    <main id="root-content" m="x-auto" :class="
-      width >= 1200 ? 'w-800px' : width >= 800 && width < 1200 ? 'w-650px' : 'w-100%'
-    ">
+    <main id="root-content" m="x-auto" class="max-w-700px">
       <NuxtPage />
-      <Footer />
     </main>
+    <Footer m="x-auto" class="max-w-700px" p="x-2" />
   </div>
 </template>
 
@@ -40,6 +38,11 @@ body {
 *::-webkit-scrollbar {
   width: 4px;
   height: 4px;
+  background-color: #f1f1f1;
+}
+
+html.dark *::-webkit-scrollbar {
+  background-color: #111;
 }
 
 *::-webkit-scrollbar-thumb {

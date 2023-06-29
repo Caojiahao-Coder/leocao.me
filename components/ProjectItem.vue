@@ -1,12 +1,10 @@
 <script setup lang="ts">
 const props = defineProps<{
   projectInfo: {
-    id: number,
     title: string,
     cover: string,
     description: string,
     githubLink: string,
-    livePreview: string
   }
 }>()
 </script>

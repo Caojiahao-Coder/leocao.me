@@ -11,6 +11,7 @@
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.18",
     "@iconify-json/fluent-emoji": "^1.1.13",
+    "@nuxt/content": "^2.7.0",
     "@nuxt/devtools": "^0.6.0",
     "@nuxtjs/color-mode": "^3.2.0",
     "@nuxtjs/dotenv": "^1.4.1",
@@ -26,7 +27,6 @@
     "highlight.js": "^11.8.0",
     "markdown-it": "^13.0.1",
     "markdown-it-shiki": "^0.9.0",
-    "mongodb": "^5.6.0",
     "nuxt": "^3.5.3",
     "nuxt3": "3.6.0-28105054.02ba4b30"
   },

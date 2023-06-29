@@ -84,8 +84,8 @@ function onMouseMove(event: MouseEvent) {
   top: var(--move-y);
   overflow: hidden;
   border-radius: 90px;
-  background: conic-gradient(from -68.24deg at 50% 50.1%, #F047FF -58.7deg, rgba(79, 0, 247, 0.890484) 19.14deg, #C70000 201.14deg, #CB003D 237deg, #F047FF 301.3deg, rgba(79, 0, 247, 0.890484) 379.14deg);
-  filter: blur(100px);
+  background: linear-gradient(155deg, #0F6 0%, #00D1FF 100%);
+  filter: blur(120px);
   content: '';
   z-index: -1;
 }

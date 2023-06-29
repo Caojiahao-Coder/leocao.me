@@ -1,33 +1,42 @@
 <script setup lang="ts">
-const props = defineProps<
-  {
-    title: string,
-    fileList: {
-      name: string,
-      a_id: string,
-      publishTime: string,
-    }[]
-  }
->()
+const props = defineProps<{
+  year: number,
+  files: {
+    fileName: string,
+    fileLink: string,
+    cTime: string
+  }[]
+}>()
 </script>
 
-<template >
-  <div v-if="fileList.length > 0" m-b-16>
+<template>
+  <div>
     <div class="relative select-none h8 pointer-events-none">
-      <span text-8em color-transparent absolute left--2rem top--2rem font-bold text-stroke-2 text-stroke-hex-aaa op10>
-        {{ props.title }}
+      <span text-9em color-transparent absolute left--2rem top--2rem font-bold text-stroke-2 text-stroke-hex-aaa op10 >
+        {{ year }}
       </span>
     </div>
-    <div class="list-none">
-      <BlogItem :title="item.name" :a_id="item.a_id" :publish-time="item.publishTime" :key="index"
-        v-for="(item, index) in props.fileList" />
-    </div>
+
+    <ul>
+      <li v-for="(item, index) in props.files" :key="index">
+        <NuxtLink :to="item.fileLink" class="color-base font-bold icon-button decoration-none">
+          <span>{{ item.fileName }}</span>
+          <span class="text-4 font-300 font-italic m-x-2">{{ item.cTime }}</span>
+        </NuxtLink>
+      </li>
+    </ul>
   </div>
 </template>
 
 <style scoped>
-@font-face {
-  font-family: BlogYearFont;
-  src: url(../fonts/BlogYearFont.ttf);
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul>li {
+  font-size: 24px;
+  padding: 6px 0;
 }
 </style>
