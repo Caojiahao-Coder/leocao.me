@@ -1,13 +1,6 @@
 <script setup lang="ts">
-useHead({
-  link: [{
-    rel: "stylesheet",
-    href: "https://unpkg.com/typer-js/dist/typer.min.css"
-  }],
-  script: [{
-    src: 'https://unpkg.com/typer-js'
-  }]
-})
+//@ts-ignore
+import typer from 'typer-js'
 const {
   data, pending, error, refresh
 } = await useAsyncData('blog_list', () => $fetch('/api/posts/list'))
