@@ -4,14 +4,14 @@ title: GPT NEXT Update Log List
 
 # GPT NEXT Update Log List
 
-## V1.1.1 🫠 `Current Version`
+## V1.1.1 🫡 `Current Version`
 
 > Update time: 2023-07-04 11:41
 
 ### Features 🚀
-1. DB: Reconstructs database
-2. Code: Reconstructs the global store
-3. UI: Reconstructs the dialog Item view
+1. Feat: Update the existing messages
+2. Feat: Reload message
+3. Feat: Delete the existing messages
 
 ## V1.1.0 🫠 
 
