@@ -4,7 +4,18 @@ title: GPT NEXT Update Log List
 
 # GPT NEXT Update Log List
 
-## V1.1.1 🫡 `Current Version`
+## V1.1.2 `Current Version`
+
+> Update time: 2023-07-09 20:59
+
+### Features 🚀
+1. Feat: Supports animation effects when gpt is thinking.
+2. Feat: Supports gpt automatically generates Session title.
+
+### Bug Fixes 🐞
+- fix: Fixed gpt answer vue code output 'Error: Unknown language: vue is not registered'
+
+## V1.1.1
 
 > Update time: 2023-07-04 11:41
 
@@ -13,7 +24,7 @@ title: GPT NEXT Update Log List
 2. Feat: Reload message
 3. Feat: Delete the existing messages
 
-## V1.1.0 🫠 
+## V1.1.0
 
 > Update time: 2023-07-02 22:33
 
