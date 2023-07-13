@@ -23,8 +23,8 @@ watch(expand, (newValue) => {
 </script>
 
 <template>
-  <header class="relative h80px flex flex-row p-x6">
-    <div class="flex flex-col">
+  <header class="relative h80px w100% flex flex-row z-100 fixed! backdrop-blur-12 border-base" b="0 b-1 solid">
+    <div class="flex flex-col ml6">
       <div class="flex-1" />
       <RouterLink to="/" class="decoration-none color-base text-3em font-bold" style="font-family: 'Cookie';">
         Leo Cao
@@ -34,7 +34,7 @@ watch(expand, (newValue) => {
 
     <div class="flex-1" />
 
-    <div v-if="width >= 500" class="flex flex-row gap-6 font-bold">
+    <div v-if="width >= 500" class="flex flex-row gap-6 font-bold mr6">
       <VerticalCenterIconCard>
         <RouterLink class="icon-button decoration-none color-base" to="/blog">
           Blog
