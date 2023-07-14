@@ -11,9 +11,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-100vh bg-base color-base" p="x-2">
+  <div id="root-bg" class="min-h-100vh bg-base color-base">
     <Header />
-    <main id="root-content" m="x-auto" class="max-w-700px">
+    <main id="root-content" m="x-auto" p="x-12px t-104px" class="max-w-700px">
       <NuxtPage />
     </main>
     <Footer m="x-auto" class="max-w-700px" p="x-2" />
