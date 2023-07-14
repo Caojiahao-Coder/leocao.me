@@ -1,11 +1,10 @@
 <script setup lang="ts">
-
 onMounted(() => {
   window.addEventListener('mousemove', onMouseMove)
 })
 
 onUnmounted(() => {
-  window.addEventListener('mouseover', onMouseMove)
+  window.removeEventListener('mouseover', onMouseMove)
 })
 
 function onMouseMove(event: MouseEvent) {
@@ -22,9 +21,13 @@ function onMouseMove(event: MouseEvent) {
   top = Math.min(top, window.innerHeight - 208);
   left = Math.min(left, window.innerWidth - 208);
 
-
   item.style.setProperty('--move-x', left + "px")
   item.style.setProperty('--move-y', top + "px")
+
+  var blur = top / 80
+  blur = Math.max(6, blur)
+
+  item.style.setProperty('--blur-value', blur + "rem")
 }
 </script>
 
@@ -84,9 +87,20 @@ function onMouseMove(event: MouseEvent) {
   top: var(--move-y);
   overflow: hidden;
   border-radius: 90px;
-  background: linear-gradient(155deg, #0F6 0%, #00D1FF 100%);
-  filter: blur(120px);
+  background: linear-gradient(155deg, rgb(0, 255, 187) 50%, #0d00ff 50%);
   content: '';
   z-index: -1;
+  animation: identifier 5s linear infinite;
+  filter: blur(var(--blur-value, 6rem));
+}
+
+@keyframes identifier {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
