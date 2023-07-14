@@ -23,7 +23,7 @@ watch(expand, (newValue) => {
 </script>
 
 <template>
-  <header class="relative h80px w100% flex flex-row z-100 fixed! backdrop-blur-12 border-base" b="0 b-1 solid">
+  <header class="relative h80px w100% flex flex-row z-100 fixed! backdrop-blur-12 border-#11111110 dark:border-#f1f1f110" b="0 b-1 solid">
     <div class="flex flex-col ml6">
       <div class="flex-1" />
       <RouterLink to="/" class="decoration-none color-base text-3em font-bold" style="font-family: 'Cookie';">

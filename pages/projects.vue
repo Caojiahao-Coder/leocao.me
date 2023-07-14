@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data, pending, error, refresh } = await useAsyncData('projects_list', () => $fetch('/api/projects/list'))
+const { data } = await useAsyncData('projects_list', () => $fetch('/api/projects/list'))
 const width = ref(0)
 
 onMounted(() => {
