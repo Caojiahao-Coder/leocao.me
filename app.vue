@@ -13,10 +13,10 @@ onMounted(() => {
 <template>
   <div id="root-bg" class="min-h-100vh bg-base color-base">
     <Header />
-    <main id="root-content" m="x-auto" p="x-12px t-104px" class="max-w-700px">
+    <main id="root-content" m="x-auto" p="t-104px x-4" class="max-w-700px">
       <NuxtPage />
     </main>
-    <Footer m="x-auto" class="max-w-700px" p="x-2" />
+    <Footer m="x-auto" class="max-w-700px p-x-4" />
   </div>
 </template>
 
