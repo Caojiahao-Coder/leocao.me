@@ -4,7 +4,16 @@ title: GPT NEXT Update Log List
 
 # GPT NEXT Update Log List
 
-## V1.1.2 `Current Version`
+## V1.1.4 `Current Version`
+
+> Update time: 2023-07-15 22:41
+
+### Features 🚀
+1. Feat: Supports the iPad cursor animation.
+2. Feat: Supports enable and disable iPad cursor animation.
+3. Feat: Add background noise image to gpt view.
+
+## V1.1.2 
 
 > Update time: 2023-07-09 20:59
 
