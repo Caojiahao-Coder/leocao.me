@@ -1,38 +1,63 @@
 <script setup lang="ts">
+const gridCount = ref<number>(0)
+const pointCount = ref<number>(1)
+
+var interval: any
+
 onMounted(() => {
-  window.addEventListener('mousemove', onMouseMove)
+  getBgPoints()
+
+  window.addEventListener('resize', getBgPoints)
+
+  if (!interval)
+    interval = setInterval(() => {
+      const index = Math.floor(Math.random() * pointCount.value)
+      const clientNode = document.querySelector(`.bg-node:nth-child(${index})`)
+      clientNode?.classList.add('light')
+      setTimeout(() => { clientNode?.classList.remove('light') }, 1200)
+    }, 150)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('mouseover', onMouseMove)
+  if (interval)
+    clearInterval(interval)
 })
 
-function onMouseMove(event: MouseEvent) {
-  const item = document.getElementById('my-page')
-  if (!item)
-    return
+function getBgPoints() {
+  const xCount = Math.floor(window.innerWidth / 30)
+  gridCount.value = xCount
 
-  let top = (event.pageY - 80)
-  let left = (event.pageX - 80)
-
-  top = Math.max(80, top);
-  left = Math.max(80, left);
-
-  top = Math.min(top, window.innerHeight - 208);
-  left = Math.min(left, window.innerWidth - 208);
-
-  item.style.setProperty('--move-x', left + "px")
-  item.style.setProperty('--move-y', top + "px")
-
-  var blur = top / 80
-  blur = Math.max(6, blur)
-
-  item.style.setProperty('--blur-value', blur + "rem")
+  const count = (window.innerHeight / (window.innerWidth / xCount)) * xCount
+  const intCount = Math.min(5000, Math.floor(count))
+  pointCount.value = intCount
 }
+
+// function onMouseMove(event: MouseEvent) {
+//   const item = document.getElementById('my-page')
+//   if (!item)
+//     return
+
+//   let top = (event.pageY - 80)
+//   let left = (event.pageX - 80)
+
+//   top = Math.max(80, top);
+//   left = Math.max(80, left);
+
+//   top = Math.min(top, window.innerHeight - 208);
+//   left = Math.min(left, window.innerWidth - 208);
+
+//   item.style.setProperty('--move-x', left + "px")
+//   item.style.setProperty('--move-y', top + "px")
+
+//   var blur = top / 80
+//   blur = Math.max(6, blur)
+
+//   item.style.setProperty('--blur-value', blur + "rem")
+// }
 </script>
 
 <template>
-  <div class="p-6 flex flex-col gap-4 relative z-1" id="my-page">
+  <div class="flex flex-col gap-4 relative z-1" id="my-page">
     <div class="font-black text-4em" style="font-family: 'Dancing Script';">
       Hello,
       <br>
@@ -74,12 +99,17 @@ function onMouseMove(event: MouseEvent) {
       </NuxtLink>
     </div>
   </div>
+
+  <div class="absolute w-full top-81px left-0 color-base grid p-8px" style="height:calc(100% - 97px)"
+    :style="{ gridTemplateColumns: `repeat(${gridCount}, 1fr)` }">
+    <div v-for=" in pointCount" class="bg-node w-2px h-2px b-rd-90px bg-body m-auto"></div>
+  </div>
 </template>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
-#my-page::after {
+/* #my-page::after {
   position: fixed;
   width: 10rem;
   height: 10rem;
@@ -102,5 +132,12 @@ function onMouseMove(event: MouseEvent) {
   100% {
     transform: rotate(360deg);
   }
+} */
+
+.light {
+  background-color: rgba(50, 255, 118, 0.9) !important;
+  box-shadow: 0px 0px 1px 1px rgba(50, 255, 176, 0.5),
+    0px 0px 2px 1px rgba(50, 255, 193, 0.25);
+  transition-duration: 888ms;
 }
 </style>
