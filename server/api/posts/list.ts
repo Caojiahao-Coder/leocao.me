@@ -1,50 +1,29 @@
-import * as path from 'path'
-import * as fs from 'fs'
+import { Link } from './../../../.nuxt/components.d';
+import ctx from '../../utils/mssql'
 
-const rootPath = path.join(process.cwd())
 export default defineEventHandler(async (event) => {
-  const path = rootPath + "/content/"
-  var files = fs.readdirSync(path).filter(a => a.endsWith('.md')).map(a => {
-    return {
-      fileName: a,
-      fileInfo: fs.statSync(path + a)
-    }
-  })
+  const getYearGroupSql = "select data.Year from (select CONVERT(varchar(4),create_time,23) as Year from articles) data group by data.Year"
+  const data = await ctx.query(getYearGroupSql) as { Year: number }[]
 
-  files = files.sort((a, b) => {
-    return a.fileInfo.ctimeMs - b.fileInfo.ctimeMs
-  })
+  const result: {
+    Year: number,
+    Articles: {
+      Id: number,
+      Title: string,
+      Link: string,
+      Date: string
+    }[]
+  }[] = []
 
-  var allFiles = files.map(a => {
-    return {
-      fileName: a.fileName.replace('.md', ''),
-      fileLink: a.fileName.replace('.md', '').toLowerCase(),
-      cTime: formatDate(a.fileInfo.ctime),
-      year: a.fileInfo.ctime.getFullYear()
-    }
-  });
+  for (let i = 0; i < data.length; i++) {
+    const item = data[i]
+    const getArticleListSql = "select id as Id ,title as Title ,link as Link, CONVERT(varchar(6),create_time,107) as [Date] from articles where YEAR(create_time) = " + item.Year
+    const articleListData = await ctx.query(getArticleListSql)
+    result.push({
+      Year: item.Year,
+      Articles: articleListData
+    })
+  }
 
-  var years = [...new Set(allFiles.map(a => a.year))]
-
-  return years.map(item => {
-    return {
-      year: item,
-      files: allFiles.filter(a => a.year === item).map(a => {
-        return {
-          fileName: a.fileName,
-          fileLink: a.fileLink,
-          cTime: a.cTime,
-        }
-      })
-    }
-  })
+  return result
 })
-
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-function formatDate(date: Date): string {
-  const monthIndex = date.getMonth();
-  const month = months[monthIndex];
-  const day = date.getDate();
-  return `${month}, ${day}`
-}

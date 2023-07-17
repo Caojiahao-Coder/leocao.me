@@ -13,18 +13,12 @@ onMounted(() => {
 const isDark = useDark()
 const expand = ref<boolean>(false)
 
-watch(expand, (newValue) => {
-  if (newValue)
-    document.getElementById('root-content')!.style.filter = 'blur(.5rem)'
-  else
-    document.getElementById('root-content')!.style.filter = 'blur(0px)'
-})
-
 </script>
 
 <template>
-  <header class="relative h80px flex flex-row p-x6">
-    <div class="flex flex-col">
+  <header class="relative h80px w100% flex flex-row z-100 fixed! backdrop-blur-12 border-#11111110 dark:border-#f1f1f110"
+    b="0 b-1 solid">
+    <div class="flex flex-col ml6">
       <div class="flex-1" />
       <RouterLink to="/" class="decoration-none color-base text-3em font-bold" style="font-family: 'Cookie';">
         Leo Cao
@@ -34,7 +28,7 @@ watch(expand, (newValue) => {
 
     <div class="flex-1" />
 
-    <div v-if="width >= 500" class="flex flex-row gap-6 font-bold">
+    <div v-if="width >= 500" class="flex flex-row gap-6 font-bold mr6">
       <VerticalCenterIconCard>
         <RouterLink class="icon-button decoration-none color-base" to="/blog">
           Blog
@@ -65,17 +59,18 @@ watch(expand, (newValue) => {
     </div>
     <div v-else class="flex flex-row gap-6">
       <VerticalCenterIconCard>
-        <div class="h-24px w-24px " :class="expand ? 'i-carbon-close' : 'i-carbon-menu'" @click="() => {
+        <div class="h-24px w-24px px-4" :class="expand ? 'i-carbon-close' : 'i-carbon-menu'" @click="() => {
           expand = !expand
         }" />
       </VerticalCenterIconCard>
     </div>
   </header>
 
-  <div v-if="expand" class="transition-all absolute top-80px bg-base p-4 border-base overflow-hidden z-100"
-    style="width: calc(100% - 32px);" b="0 t-1 b-1 solid">
-    <ul class="list-none p0 m0">
-      <li p="x-4 y-3" class="bg-body b-rd-1">
+  <div v-if="expand"
+    class="flex flex-col transition-all absolute top-80px w-full border-base overflow-hidden z-100 backdrop-blur"
+    b="0 t-1 b-1 solid" style="height: calc(100vh - 82px);">
+    <ul class="list-none py4 px2 m0 bg-base">
+      <li p="x-4 y-3" class="bg-body">
         <a href="/blog" class="color-base decoration-none">
           <div class="flex flex-row gap-2">
             <div i-carbon-product class="h18px" style="line-height: 22px; height: 22px;" />
@@ -84,7 +79,7 @@ watch(expand, (newValue) => {
         </a>
       </li>
 
-      <li p="x-4 y-3" class="bg-body b-rd-1 m-t-2">
+      <li p="x-4 y-3" class="bg-body m-t-2">
         <a href="/Projects" class="color-base decoration-none">
           <div class="flex flex-row gap-2">
             <div i-carbon-ibm-cloud-kubernetes-service class="h18px" style="line-height: 18px;" />
@@ -93,7 +88,7 @@ watch(expand, (newValue) => {
         </a>
       </li>
 
-      <li p="x-4 y-3" class="bg-body b-rd-1 m-t-2">
+      <li p="x-4 y-3" class="bg-body m-t-2">
         <a href="https://github.com/caojiahao-Coder/" target="_blank" class="color-base decoration-none">
           <div class="flex flex-row gap-2">
             <div i-carbon-logo-github class="h18px" style="line-height: 18px;" />
@@ -102,7 +97,7 @@ watch(expand, (newValue) => {
         </a>
       </li>
 
-      <li p="x-4 y-3" class="bg-body b-rd-1 m-t-2">
+      <li p="x-4 y-3" class="bg-body m-t-2">
         <a href="https://www.figma.com/files/team/1235847793536641012" target="_blank" class="color-base decoration-none">
           <div class="flex flex-row gap-2">
             <div i-carbon-logo-figma class="h18px" style="line-height: 18px;" />
@@ -111,7 +106,7 @@ watch(expand, (newValue) => {
         </a>
       </li>
 
-      <li p="x-4 y-3" class="bg-body b-rd-1 m-t-2">
+      <li p="x-4 y-3" class="bg-body m-t-2">
         <div class="flex flex-row gap-2" @click="toggleDark">
           <div class=" color-base" dark:i-carbon-partly-cloudy-night i-carbon-partly-cloudy
             style="width: 18px; height: 18px;" />
@@ -119,9 +114,9 @@ watch(expand, (newValue) => {
         </div>
       </li>
     </ul>
+    <div flex-1 @click="expand = false" />
   </div>
 </template>
 
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Cookie');
+<style scoped>@import url('https://fonts.googleapis.com/css2?family=Cookie');
 </style>
