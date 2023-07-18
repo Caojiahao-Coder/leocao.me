@@ -13,8 +13,8 @@ onMounted(() => {
     interval = setInterval(() => {
       const index = Math.floor(Math.random() * pointCount.value)
       const clientNode = document.querySelector(`.bg-node:nth-child(${index})`)
-      clientNode?.classList.add('light')
-      setTimeout(() => { clientNode?.classList.remove('light') }, 1200)
+      clientNode?.classList.remove('dark')
+      setTimeout(() => { clientNode?.classList.add('dark') }, 1200)
     }, 150)
 })
 
@@ -31,29 +31,6 @@ function getBgPoints() {
   const intCount = Math.min(5000, Math.floor(count))
   pointCount.value = intCount
 }
-
-// function onMouseMove(event: MouseEvent) {
-//   const item = document.getElementById('my-page')
-//   if (!item)
-//     return
-
-//   let top = (event.pageY - 80)
-//   let left = (event.pageX - 80)
-
-//   top = Math.max(80, top);
-//   left = Math.max(80, left);
-
-//   top = Math.min(top, window.innerHeight - 208);
-//   left = Math.min(left, window.innerWidth - 208);
-
-//   item.style.setProperty('--move-x', left + "px")
-//   item.style.setProperty('--move-y', top + "px")
-
-//   var blur = top / 80
-//   blur = Math.max(6, blur)
-
-//   item.style.setProperty('--blur-value', blur + "rem")
-// }
 </script>
 
 <template>
@@ -102,42 +79,22 @@ function getBgPoints() {
 
   <div class="absolute w-full top-81px left-0 color-base grid p-8px" style="height:calc(100% - 97px)"
     :style="{ gridTemplateColumns: `repeat(${gridCount}, 1fr)` }">
-    <div v-for=" in pointCount" class="bg-node w-2px h-2px b-rd-90px bg-body m-auto"></div>
+    <div v-for=" in pointCount" class="bg-node w-2px h-2px b-rd-90px m-auto dark transition-duration-888ms"
+      :style="{ backgroundColor: `${'#' + Math.floor(Math.random() * 16777215).toString(16)}`, boxShadow: `0px 0px 1px 1px ${'#' + Math.floor(Math.random() * 16777215).toString(16)}50,0px 0px 2px 1px ${'#' + Math.floor(Math.random() * 16777215).toString(16)}25` }">
+    </div>
   </div>
 </template>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
-/* #my-page::after {
-  position: fixed;
-  width: 10rem;
-  height: 10rem;
-  left: var(--move-x);
-  top: var(--move-y);
-  overflow: hidden;
-  border-radius: 90px;
-  background: linear-gradient(155deg, rgb(0, 255, 187) 50%, #0d00ff 50%);
-  content: '';
-  z-index: -1;
-  animation: identifier 5s linear infinite;
-  filter: blur(var(--blur-value, 6rem));
+html.dark .dark {
+  background-color: #50505020 !important;
+  box-shadow: none !important;
 }
 
-@keyframes identifier {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-} */
-
-.light {
-  background-color: rgba(50, 255, 118, 0.9) !important;
-  box-shadow: 0px 0px 1px 1px rgba(50, 255, 176, 0.5),
-    0px 0px 2px 1px rgba(50, 255, 193, 0.25);
-  transition-duration: 888ms;
+.dark {
+  background-color: #dddddd78 !important;
+  box-shadow: none !important;
 }
 </style>
