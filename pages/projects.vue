@@ -1,6 +1,9 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('projects_list', () => $fetch('/api/projects/list'))
 const width = ref(0)
+
+const data = ref<any[]>([])
+
+loadPosts()
 
 onMounted(() => {
   width.value = window.innerWidth
@@ -8,6 +11,13 @@ onMounted(() => {
     width.value = window.innerWidth
   })
 })
+
+function loadPosts()
+{
+  useAsyncData('projects_list', () => $fetch('/api/projects/list')).then(res=>{
+    data.value = res.data.value as []
+  })
+}
 </script>
 
 <template>
