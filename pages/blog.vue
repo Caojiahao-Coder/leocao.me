@@ -2,18 +2,28 @@
 //@ts-ignore
 import typer from 'typer-js'
 
-const {
-  data
-} = await useAsyncData('blog_list', () => $fetch('/api/posts/list'))
+const data = ref<{
+  Year: number;
+  Articles: {
+    Id: number;
+    Title: string;
+    Link: string;
+    Date: string;
+  }[]
+}[]>([])
 
-onMounted(() => {
-  if ((data.value?.length ?? 0) >= 1)
-    return
-  //@ts-ignore
-  //https://unpkg.com/typer-js
-  typer(document.getElementById('empty-bg-view'), 100)
-    .line('The post list is empty.')
-})
+loadPosts()
+
+function loadPosts() {
+  useAsyncData('blog_list', () => $fetch('/api/posts/list')).then((response) => {
+    data.value = response.data.value as []
+    console.log(data.value)
+    if (data.value && data.value.length === 0) {
+      typer(document.getElementById('empty-bg-view'), 100)
+        .line('The post list is empty.')
+    }
+  })
+}
 </script>
 
 <template>
