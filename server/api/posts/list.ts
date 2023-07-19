@@ -1,4 +1,3 @@
-import { Link } from './../../../.nuxt/components.d';
 import ctx from '../../utils/mssql'
 
 export default defineEventHandler(async (event) => {

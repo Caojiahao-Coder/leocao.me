@@ -1,9 +1,7 @@
 <script setup lang="ts">
 const width = ref(0)
 
-const data = ref<any[]>([])
-
-loadPosts()
+const { data: projects } = useFetch('/api/projects/list')
 
 onMounted(() => {
   width.value = window.innerWidth
@@ -12,21 +10,15 @@ onMounted(() => {
   })
 })
 
-function loadPosts()
-{
-  useAsyncData('projects_list', () => $fetch('/api/projects/list')).then(res=>{
-    data.value = res.data.value as []
-  })
-}
 </script>
 
 <template>
-  <div >
+  <div>
     <div class="font-bold text-6">Project List</div>
     <div grid gap-2 m-t-2 :style="{
       gridTemplateColumns: `repeat(${width >= 600 ? 2 : 1},1fr)`,
     }">
-      <ProjectItem :key="index" :project-info="item" v-for="(item, index) in data" />
+      <ProjectItem :key="index" :project-info="item" v-for="(item, index) in projects" />
     </div>
   </div>
 </template>
