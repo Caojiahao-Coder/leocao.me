@@ -1,75 +1,34 @@
 <script setup lang="ts">
-
-const { data: posts } = useFetch('/api/posts/list')
-
-const pointsCount = ref<number>(6 * 6)
-
-onMounted(() => {
-  var container = document.querySelector('.container');
-  var cubes = document.querySelectorAll('.cube');
-
-  container!.addEventListener('mousemove', function (event: any) {
-    var mouseX = event.clientX;
-    var mouseY = event.clientY;
-
-    cubes.forEach(function (cube) {
-      var rect = cube.getBoundingClientRect();
-      var cubeX = rect.left + rect.width / 2;
-      var cubeY = rect.top + rect.height / 2;
-
-      const mousePoint: Point = { x: mouseX, y: mouseY };
-      const cubePoint: Point = { x: cubeX, y: cubeY };
-
-      let angle = cubePoint.x <= mousePoint.x ? calculateAngleLeft(cubePoint, mousePoint) : calculateAngleLeft(mousePoint, cubePoint);
-
-      (cube as HTMLDivElement).style.transform = 'rotateZ(' + angle + 'deg)';
-    })
-  });
-
-  container!.addEventListener('mouseleave', function () {
-    cubes.forEach(function (cube) {
-      (cube as HTMLDivElement).style.transform = 'rotateZ(0deg)';
-    });
-  });
+const { data } = useFetch<{
+  Year: number,
+  Articles: {
+    Id: number,
+    Title: string,
+    Link: string,
+    Date: string
+  }[]
+}[]>('/api/posts/list', {
+  onResponse({ request, response, options }) {
+    isNull.value = (response._data?.length ?? 0) === 0
+    isFinished.value = true
+  }
 })
 
-interface Point {
-  x: number;
-  y: number;
-}
+const isNull = ref<boolean>(true)
+const isFinished = ref<boolean>(false)
 
-function calculateAngleLeft(point1: Point, point2: Point): number {
-  const deltaX = point2.x - point1.x;
-  const deltaY = point2.y - point1.y;
-  const radians = Math.atan2(deltaY, deltaX);
-  const degrees = radians * (180 / Math.PI);
-  return degrees;
-}
-
+onMounted(() => {
+  setTimeout(() => {
+    if (isFinished.value === false)
+      isFinished.value = true
+  }, 2400)
+})
 </script>
 
 <template>
   <div>
-    <BlogGroup v-for="(item, index) in posts" :key="index" :year="item.Year" :articles="item.Articles" />
-    <div v-if="posts?.length === 0" class="container grid grid-cols-6 p-y-4 gap-y-8 relative">
-      <div v-for=" in pointsCount" class=" cube w-24px h-4px m-auto b-rd"
-        :style="{ backgroundColor: `${'#' + Math.floor(Math.random() * 16777215).toString(16)}`, boxShadow: `0px 0px 1px 1px ${'#' + Math.floor(Math.random() * 16777215).toString(16)}50,0px 0px 2px 1px ${'#' + Math.floor(Math.random() * 16777215).toString(16)}25` }">
-
-      </div>
-
-      <div
-        class="w-100% h-216px absolute top-0 left-0 text-center line-height-216px text-12 font-700 z-100 backdrop-blur-2"
-        style="font-family: 'Ubuntu';">
-        NOTHING
-      </div>
-    </div>
+    <BlogGroup v-for="(item, index) in data" :key="index" :year="item.Year" :articles="item.Articles" />
+    <NothingView :show="isFinished && isNull" />
+    <LoadingDialog :is-loading="!isFinished" />
   </div>
 </template>
-
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,700&display=swap');
-
-.container>.cube {
-  transition-duration: .24s;
-}
-</style>

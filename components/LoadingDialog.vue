@@ -1,5 +1,11 @@
+<script setup lang="ts">
+defineProps<{
+  isLoading:boolean
+}>()
+</script>
+
 <template>
-  <div class="loading-dialog-view fixed w-full top-81px left-0 z-100000 backdrop-blur flex flex-col">
+  <div v-show="isLoading" class="loading-dialog-view fixed w-full top-81px left-0 z-100000 backdrop-blur flex flex-col">
     <div class="flex-1" />
     <div>
       <div class="m-auto text-5 i-svg-spinners-ring-resize" />
