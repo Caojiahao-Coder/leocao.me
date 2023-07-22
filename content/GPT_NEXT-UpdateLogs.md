@@ -4,7 +4,14 @@ title: GPT NEXT Update Log List
 
 # GPT NEXT Update Log List
 
-## V1.1.4 `Current Version`
+## V1.1.5 `Current Version`
+
+> Update time: 2023-07-23 22:41
+
+### Features 🚀
+1. Feat: Supports the conversation list resize.
+
+## V1.1.4
 
 > Update time: 2023-07-15 22:41
 
