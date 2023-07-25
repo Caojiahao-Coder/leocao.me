@@ -1,5 +1,6 @@
 ---
-title: GPT NEXT Update Log List
+readTime: 2mins
+author: Leo Cao
 ---
 
 # GPT NEXT Update Log List

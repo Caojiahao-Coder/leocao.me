@@ -10,7 +10,6 @@ const { data } = useFetch<{
 }[]>('/api/projects/list', {
   onResponse({ request, response, options }) {
     isFinished.value = true
-    isNull.value = (response._data?.length ?? 0) === 0
   }
 })
 
@@ -27,7 +26,6 @@ onMounted(() => {
 })
 
 const isFinished = ref<boolean>(false)
-const isNull = ref<boolean>(true)
 
 </script>
 
@@ -39,7 +37,7 @@ const isNull = ref<boolean>(true)
     }">
       <ProjectItem :key="index" :project-info="item" v-for="(item, index) in data" />
     </div>
-    <NothingView :show="isFinished === true && isNull === true" />
+    <NothingView :show="(data?.length??0) === 0" />
     <LoadingDialog :is-loading="isFinished === false" />
   </div>
 </template>

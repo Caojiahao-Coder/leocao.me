@@ -9,7 +9,6 @@ const { data } = useFetch<{
   }[]
 }[]>('/api/posts/list', {
   onResponse({ request, response, options }) {
-    isNull.value = (response._data?.length ?? 0) === 0
     isFinished.value = true
   }
 })
@@ -28,7 +27,7 @@ onMounted(() => {
 <template>
   <div>
     <BlogGroup v-for="(item, index) in data" :key="index" :year="item.Year" :articles="item.Articles" />
-    <NothingView :show="isFinished && isNull" />
+    <NothingView :show="isFinished && (data?.length??0) === 0" />
     <LoadingDialog :is-loading="!isFinished" />
   </div>
 </template>

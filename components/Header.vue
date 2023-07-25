@@ -67,7 +67,7 @@ const expand = ref<boolean>(false)
   </header>
 
   <div v-if="expand"
-    class="flex flex-col transition-all absolute top-80px w-full border-base overflow-hidden z-100 backdrop-blur"
+    class="flex flex-col transition-all absolute top-80px w-full border-base overflow-hidden z-9999999999 backdrop-blur"
     b="0 t-1 b-1 solid" style="height: calc(100vh - 82px);">
     <ul class="list-none py4 px2 m0 bg-base">
       <li p="x-4 y-3" class="bg-body">
