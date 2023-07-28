@@ -66,57 +66,71 @@ const expand = ref<boolean>(false)
     </div>
   </header>
 
-  <div v-if="expand"
-    class="flex flex-col transition-all absolute top-80px w-full border-base overflow-hidden z-9999999999 backdrop-blur"
-    b="0 t-1 b-1 solid" style="height: calc(100vh - 82px);">
-    <ul class="list-none py4 px2 m0 bg-base">
-      <li p="x-4 y-3" class="bg-body">
-        <a href="/blog" class="color-base decoration-none">
-          <div class="flex flex-row gap-2">
-            <div i-carbon-product class="h18px" style="line-height: 22px; height: 22px;" />
-            <div>Blog</div>
-          </div>
-        </a>
-      </li>
+  <Transition mode="in-out">
+    <div v-if="expand"
+      class="flex flex-col absolute top-80px w-full overflow-hidden z-9999999999 backdrop-blur border-#11111110 b-0 b-solid b-t-1"
+      style="height: calc(100vh - 82px);">
+      <ul class="list-none py4 px2 m0 bg-base">
+        <li p="x-4 y-3" class="bg-body">
+          <a href="/blog" class="color-base decoration-none">
+            <div class="flex flex-row gap-2">
+              <div i-carbon-product class="h18px" style="line-height: 22px; height: 22px;" />
+              <div>Blog</div>
+            </div>
+          </a>
+        </li>
 
-      <li p="x-4 y-3" class="bg-body m-t-2">
-        <a href="/Projects" class="color-base decoration-none">
-          <div class="flex flex-row gap-2">
-            <div i-carbon-ibm-cloud-kubernetes-service class="h18px" style="line-height: 18px;" />
-            <div>Projects</div>
-          </div>
-        </a>
-      </li>
+        <li p="x-4 y-3" class="bg-body m-t-2">
+          <a href="/Projects" class="color-base decoration-none">
+            <div class="flex flex-row gap-2">
+              <div i-carbon-ibm-cloud-kubernetes-service class="h18px" style="line-height: 18px;" />
+              <div>Projects</div>
+            </div>
+          </a>
+        </li>
 
-      <li p="x-4 y-3" class="bg-body m-t-2">
-        <a href="https://github.com/caojiahao-Coder/" target="_blank" class="color-base decoration-none">
-          <div class="flex flex-row gap-2">
-            <div i-carbon-logo-github class="h18px" style="line-height: 18px;" />
-            <div>Github</div>
-          </div>
-        </a>
-      </li>
+        <li p="x-4 y-3" class="bg-body m-t-2">
+          <a href="https://github.com/caojiahao-Coder/" target="_blank" class="color-base decoration-none">
+            <div class="flex flex-row gap-2">
+              <div i-carbon-logo-github class="h18px" style="line-height: 18px;" />
+              <div>Github</div>
+            </div>
+          </a>
+        </li>
 
-      <li p="x-4 y-3" class="bg-body m-t-2">
-        <a href="https://www.figma.com/files/team/1235847793536641012" target="_blank" class="color-base decoration-none">
-          <div class="flex flex-row gap-2">
-            <div i-carbon-logo-figma class="h18px" style="line-height: 18px;" />
-            <div>Figma</div>
-          </div>
-        </a>
-      </li>
+        <li p="x-4 y-3" class="bg-body m-t-2">
+          <a href="https://www.figma.com/files/team/1235847793536641012" target="_blank"
+            class="color-base decoration-none">
+            <div class="flex flex-row gap-2">
+              <div i-carbon-logo-figma class="h18px" style="line-height: 18px;" />
+              <div>Figma</div>
+            </div>
+          </a>
+        </li>
 
-      <li p="x-4 y-3" class="bg-body m-t-2">
-        <div class="flex flex-row gap-2" @click="toggleDark">
-          <div class=" color-base" dark:i-carbon-partly-cloudy-night i-carbon-partly-cloudy
-            style="width: 18px; height: 18px;" />
-          <div>{{ isDark === true ? 'Dark Mode' : 'Light Mode' }}</div>
-        </div>
-      </li>
-    </ul>
-    <div flex-1 @click="expand = false" />
-  </div>
+        <li p="x-4 y-3" class="bg-body m-t-2">
+          <div class="flex flex-row gap-2" @click="toggleDark">
+            <div class=" color-base" dark:i-carbon-partly-cloudy-night i-carbon-partly-cloudy
+              style="width: 18px; height: 18px;" />
+            <div>{{ isDark === true ? 'Dark Mode' : 'Light Mode' }}</div>
+          </div>
+        </li>
+      </ul>
+      <div flex-1 @click="expand = false" />
+    </div>
+  </Transition>
 </template>
 
-<style scoped>@import url('https://fonts.googleapis.com/css2?family=Cookie');
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Cookie');
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.18s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>
