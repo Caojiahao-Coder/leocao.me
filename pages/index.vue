@@ -34,7 +34,7 @@ function getBgPoints() {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 relative z-1" id="my-page">
+  <div class="flex flex-col gap-4" id="my-page">
     <div class="font-black text-4em" style="font-family: 'Dancing Script';">
       Hello,
       <br>
@@ -47,14 +47,14 @@ function getBgPoints() {
       I like open source, travel and aerospace.
     </div>
 
-    <div class="flex flex-row gap-4 m-t-6 flex-wrap">
-      <a href="https://github.com/caojiahao-Coder/" class="color-base decoration-none icon-button">
+    <div class="flex flex-row gap-4 m-t-6 flex-wrap z-10">
+      <a href="https://github.com/caojiahao-Coder/" class="color-base decoration-none icon-button backdrop-filter">
         <div class="flex flex-row gap-2 b-rd-1 bg-body cursor-pointer" p="x-4 y-2">
           <div i-carbon-logo-github h-18px style="line-height: 18px;" />
           <div>Github</div>
         </div>
       </a>
-      <NuxtLink to="/blog" class="color-base decoration-none icon-button">
+      <NuxtLink to="/blog" class="color-base decoration-none icon-button backdrop-filter">
         <div class="flex flex-row gap-2 b-rd-1 bg-body cursor-pointer" p="x-4 y-2">
           <div i-carbon-product h-18px style="line-height: 18px;" />
           <div>
@@ -62,25 +62,26 @@ function getBgPoints() {
           </div>
         </div>
       </NuxtLink>
-      <a href="https://www.figma.com/files/team/1235847793536641012" class="color-base decoration-none icon-button">
+      <a href="https://www.figma.com/files/team/1235847793536641012"
+        class="color-base decoration-none icon-button backdrop-filter">
         <div class="flex flex-row gap-2 b-rd-1 bg-body cursor-pointer" p="x-4 y-2">
           <div i-carbon-logo-figma h-18px style="line-height: 18px;" />
           <div>Figma</div>
         </div>
       </a>
-      <NuxtLink to="mailto:cao1395654040@hotmail.com" class="color-base decoration-none icon-button">
+      <NuxtLink to="mailto:cao1395654040@hotmail.com" class="color-base decoration-none icon-button backdrop-filter">
         <div class="flex flex-row gap-2 b-rd-1 bg-body cursor-pointer" p="x-4 y-2">
           <div i-carbon-email h-18px style="line-height: 18px;" />
           <div>Email</div>
         </div>
       </NuxtLink>
     </div>
-  </div>
 
-  <div class="absolute w-full top-81px left-0 color-base grid p-8px" style="height:calc(100% - 97px)"
-    :style="{ gridTemplateColumns: `repeat(${gridCount}, 1fr)` }">
-    <div v-for=" in pointCount" class="bg-node w-2px h-2px b-rd-90px m-auto dark transition-duration-888ms"
-      :style="{ backgroundColor: `${'#' + Math.floor(Math.random() * 16777215).toString(16)}`, boxShadow: `0px 0px 1px 1px ${'#' + Math.floor(Math.random() * 16777215).toString(16)}50,0px 0px 2px 1px ${'#' + Math.floor(Math.random() * 16777215).toString(16)}25` }">
+    <div class="w-100% h-100% top-0px left-0 color-base grid z-1 absolute"
+      :style="{ gridTemplateColumns: `repeat(${gridCount}, 1fr)` }">
+      <div v-for=" in pointCount" class="bg-node w-2px h-2px b-rd-90px m-auto dark transition-duration-888ms"
+        :style="{ backgroundColor: `${'#' + Math.floor(Math.random() * 16777215).toString(16)}`, boxShadow: `0px 0px 1px 1px ${'#' + Math.floor(Math.random() * 16777215).toString(16)}50,0px 0px 2px 1px ${'#' + Math.floor(Math.random() * 16777215).toString(16)}25` }">
+      </div>
     </div>
   </div>
 </template>
