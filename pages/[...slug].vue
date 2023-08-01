@@ -1,5 +1,37 @@
 <script setup lang="ts">
 import '@/styles/markdown.css'
+import { isDark } from '~/logics';
+
+const utterancesRef = ref<HTMLDivElement>()
+
+onMounted(() => {
+  loadCommentView()
+})
+
+watch(() => isDark.value, () => {
+  loadCommentView()
+})
+
+function loadCommentView() {
+  const existView = document.getElementsByClassName('utterances')
+
+  if (existView.length > 0) {
+    for (let i = 0; i < existView.length; i++) {
+      existView[i].remove()
+    }
+  }
+
+  let utterances = document.createElement('script') as HTMLScriptElement
+  utterances.setAttribute("src", "https://utteranc.es/client.js");
+  utterances.setAttribute("repo", "Caojiahao-Coder/leocao.me");
+  utterances.setAttribute("issue-term", "pathname");
+  utterances.setAttribute("label", "comment");
+  utterances.setAttribute("theme", isDark.value ? "github-dark" : "github-light")
+  utterances.setAttribute("crossorigin", "anonymous");
+  utterances.setAttribute("async", "true");
+  utterancesRef.value?.appendChild(utterances)
+}
+
 </script>
 
 <template>
@@ -33,6 +65,8 @@ import '@/styles/markdown.css'
         </NuxtLink>
       </span>
     </div>
+
+    <div ref="utterancesRef" class="m-t-6 border-base b-0 b-solid b-t-2" />
   </div>
 </template>
 
