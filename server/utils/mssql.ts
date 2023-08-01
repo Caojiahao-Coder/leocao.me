@@ -27,6 +27,7 @@ class MSSQL {
 
   constructor(sqlConfig: any) {
     this.sqlConfig = sqlConfig
+    console.log(sqlConfig)
   }
 
   /**
