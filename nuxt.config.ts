@@ -25,6 +25,13 @@ export default defineNuxtConfig({
     enabled: true
   },
 
+  nitro: {
+    prerender: {
+      crawlLinks:true,
+      failOnError: false
+    }
+  },
+
   modules: ['@unocss/nuxt', '@vueuse/nuxt', '@pinia/nuxt', '@nuxt/content'],
 
   plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
