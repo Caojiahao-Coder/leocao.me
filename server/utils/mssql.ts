@@ -1,7 +1,3 @@
-/*
-Config Microsoft SQL Server
-*/
-
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import sql from 'mssql'
@@ -17,8 +13,8 @@ const sqlConfig: any = {
     idleTimeoutMillis: 30000,
   },
   options: {
-    encrypt: false, // for azure
-    trustServerCertificate: false, // change to true for local dev / self-signed certs
+    encrypt: false,
+    trustServerCertificate: false,
   },
 }
 
@@ -27,7 +23,6 @@ class MSSQL {
 
   constructor(sqlConfig: any) {
     this.sqlConfig = sqlConfig
-    console.log(sqlConfig)
   }
 
   /**
