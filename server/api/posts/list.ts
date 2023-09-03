@@ -1,4 +1,5 @@
 import ctx from '../../utils/mssql'
+import Tb_PostInfo from './types/post'
 
 export default defineEventHandler(async (event) => {
   const getYearGroupSql = "select data.Year from (select CONVERT(varchar(4),create_time,23) as Year from articles) data group by data.Year"
@@ -6,12 +7,7 @@ export default defineEventHandler(async (event) => {
 
   const result: {
     Year: number,
-    Articles: {
-      Id: number,
-      Title: string,
-      Link: string,
-      Date: string
-    }[]
+    Articles: Tb_PostInfo[]
   }[] = []
 
   for (let i = 0; i < data.length; i++) {

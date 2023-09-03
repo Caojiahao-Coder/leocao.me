@@ -1,12 +1,9 @@
 <script setup lang="ts">
+import Tb_PostInfo from '~/server/api/posts/types/post';
+
 const props = defineProps<{
   year: number,
-  articles: {
-    Id: number,
-    Title: string,
-    Link: string,
-    Date: string
-  }[]
+  articles: Tb_PostInfo[]
 }>()
 </script>
 
