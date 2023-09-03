@@ -81,10 +81,10 @@ function closeDialog(e: MouseEvent) {
           </div>
           <div v-if="viewDetail" class="b-0 b-b-1 border-base b-solid m-y-4"></div>
           <div v-if="viewDetail" class="flex flex-row">
-            <a :href="projectInfo.GitHub" class="flex-1 decoration-none color-base">
+            <a :href="projectInfo.GitHub" class="flex-1 decoration-none color-base" target="_blank">
               <div class=" i-carbon-logo-github text-8 icon-button m-auto" />
             </a>
-            <a :href="projectInfo.Link" class="flex-1 decoration-none color-base">
+            <a :href="projectInfo.Link" class="flex-1 decoration-none color-base" target="_blank">
               <div i-carbon-send-alt text-8 icon-button m-auto />
             </a>
           </div>
