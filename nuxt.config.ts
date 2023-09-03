@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+  ssr: false,
   app: {
     head: {
       title: 'Leo Cao'
@@ -22,10 +23,13 @@ export default defineNuxtConfig({
   },
 
   devtools: {
-    enabled: true
+    enabled: true,
   },
 
   modules: ['@unocss/nuxt', '@vueuse/nuxt', '@pinia/nuxt', '@nuxt/content'],
 
-  plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
+  alias: {
+    "micromark/lib/preprocess.js": "micromark",
+    "micromark/lib/postprocess.js": "micromark",
+  },
 })

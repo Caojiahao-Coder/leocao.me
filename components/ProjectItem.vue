@@ -1,17 +1,14 @@
 <script setup lang="ts">
+import Tb_ProjectInfo from '~/server/api/projects/types/project';
+import Card from './Card.vue'
+
 const props = defineProps<{
-  projectInfo: {
-    Id: number,
-    Title: string,
-    Desc: string,
-    Cover: string,
-    Link: string
-  }
+  projectInfo: Tb_ProjectInfo
 }>()
 </script>
 
 <template>
-  <a :href="props.projectInfo.Link" target="_blank" class=" color-base decoration-none overflow-hidden">
+  <!-- <a :href="props.projectInfo.Link" target="_blank" class=" color-base decoration-none overflow-hidden">
     <div class="flex flex-row border-base b-solid b-1">
       <div class="p-y-16px p-x-14px border-base" b="0 r-1 solid">
         <div class="w-48px h-48px bg-no-repeat bg-cover " :style="{
@@ -27,7 +24,8 @@ const props = defineProps<{
         </div>
       </div>
     </div>
-  </a>
+  </a> -->
+  <Card :project-info="projectInfo"/>
 </template>
 
 <style scoped>
